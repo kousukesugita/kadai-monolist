@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
       redirect_to @user
     else
       flash.now[:danger] = 'ログインに失敗しました。'
-      render 'new'
+      render :new
+      # カリキュラムでは'new'だが:newのほうが正確とのことなので修正
     end
   end
 

@@ -15,10 +15,16 @@ class UsersController < ApplicationController
     
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
-      redirect_to user
+      # 特定の URL を新規にリクエストする（普通にブラウザで URL を入力するのと似ている）
+      # ようするに http://xxx.xxx.com をリクエストする
+      redirect_to @user
     else
       flash[:danger] = 'ユーザの登録に失敗しました。'
-      redirect_to :new
+      # 1個前のページを表示する（違うけど、ブラウザバックみたいなイメージ？）
+      # ここにくる場合は、フォームの入力にエラーがある場合で、もしここで、redirect_to を使ってしまうと、
+      # せっかく入力したフォームの値が消えてしまう
+      # だから、バリデーションエラーと共に、入力内容を戻すために、render を使う
+      render :new
     end
   end
   
