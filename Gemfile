@@ -58,3 +58,7 @@ gem 'pry-byebug'
 gem 'rakuten_web_service'
 
 gem 'dotenv-rails'
+
+group :production do
+  gem 'pg'
+end
