@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
   
   def show
     @item = Item.find(params[:id])
-    @wants_users = @item.want_users
+    @want_users = @item.want_users
+    @have_users = @item.have_users
   end
   
   def new

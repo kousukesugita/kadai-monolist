@@ -8,4 +8,10 @@ class Item < ApplicationRecord
   has_many :users, through: :ownerships
   has_many :wants
   has_many :want_users, through: :wants, class_name: 'User', source: :user
+  has_many :haves, class_name: 'Have'
+  has_many :have_users, through: :haves, source: :user
+  
+  def have?(user)
+    haves.where(user_id: user.id).exists?
+  end
 end
